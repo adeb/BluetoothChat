@@ -2,6 +2,7 @@ package com.example.xiehh.testexample;
 
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.KeyguardManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -340,6 +341,11 @@ public class BluetoothChat extends Activity {
                     if(isRunningForeground(getApplicationContext())==false) {
                         showNotification(R.drawable.ic_launcher, contentTitle, mConnectedDeviceName + ": ", readMessage);
                     }
+
+                    //判断是否为锁频状态下，如果是锁屏状态下那么更新通知栏
+                    if(isLockSrceen(getApplicationContext())==true){
+                        showNotification(R.drawable.ic_launcher,contentTitle,mConnectedDeviceName+":", readMessage);
+                    }
                     break;
                 case MESSAGE_DEVICE_NAME:
                     //save the connected device's name
@@ -358,6 +364,7 @@ public class BluetoothChat extends Activity {
         }
     };
 
+    //判断是否为前台运行
     private boolean isRunningForeground(Context context){
         ActivityManager am = (ActivityManager)context.getSystemService(context.ACTIVITY_SERVICE);
         ComponentName cn = am.getRunningTasks(1).get(0).topActivity;
@@ -366,6 +373,14 @@ public class BluetoothChat extends Activity {
             return true;
         }
         return false;
+    }
+
+    //判断是否为锁频
+    private boolean isLockSrceen(Context context){
+        boolean ret = false;
+        KeyguardManager mKeyguardManager = (KeyguardManager)context.getSystemService(context.KEYGUARD_SERVICE);
+        ret = mKeyguardManager.inKeyguardRestrictedInputMode();
+        return ret;
     }
 
     private void showNotification(int icon,String contentText, String contentTitle, String content){
