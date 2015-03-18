@@ -1,6 +1,0 @@
----- AcceptThread Matches (5 in 1 files) ----
-BluetoothChatService.java (c:\users\hong\desktop\testexample\app\src\main\java\com\example\xiehh\testexample):    private AcceptThread mAcceptThread;
-BluetoothChatService.java (c:\users\hong\desktop\testexample\app\src\main\java\com\example\xiehh\testexample):            mAcceptThread = new AcceptThread();
-BluetoothChatService.java (c:\users\hong\desktop\testexample\app\src\main\java\com\example\xiehh\testexample):    private class AcceptThread extends Thread{
-BluetoothChatService.java (c:\users\hong\desktop\testexample\app\src\main\java\com\example\xiehh\testexample):        public AcceptThread(){
-BluetoothChatService.java (c:\users\hong\desktop\testexample\app\src\main\java\com\example\xiehh\testexample):            setName("AcceptThread");
